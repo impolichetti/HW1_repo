@@ -1,0 +1,34 @@
+---
+title: "HW1"
+format: html
+editor: visual
+---
+
+```{r}
+library(sf)
+mainLink='https://github.com/DACSS-CSSmeths/Spatial-Exploring/raw/refs/heads/main/'
+mapLink=paste0(mainLink,'maps/countriesCIA.gpkg')
+my_map="https://github.com/impolichetti/HW1_repo/raw/refs/heads/main/best_countries.gpkg"
+
+myCIA=read_sf(my_map, layer='cia')
+worldBorders=read_sf(mapLink, layer='border')
+```
+
+```{r}
+library(ggplot2)
+
+base=ggplot(data = worldBorders)+geom_sf(fill='grey',color=NA) + theme_linedraw()
+maskToClip=as.vector(st_bbox(myCIA))
+
+base + geom_sf(data=myCIA,fill='yellow') + 
+  coord_sf(xlim = c(maskToClip[1],maskToClip[3]), 
+           ylim = c(maskToClip[2],maskToClip[4])) +
+    geom_sf_text(data=myCIA,
+                 aes(label=COUNTRY),
+                 color='blue',
+                 check_overlap = T,
+                 size=3,
+                 nudge_y = 0.15)
+```
+
+
