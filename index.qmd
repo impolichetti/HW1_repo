@@ -13,6 +13,8 @@ my_map="https://github.com/impolichetti/HW1_repo/raw/refs/heads/main/best_countr
 myCIA=read_sf(my_map, layer='cia')
 worldBorders=read_sf(mapLink, layer='border')
 ```
+The script loads the sf package and then stores the GitHub repository link in a variable called mainLink, which points to spatial data. Using mapLink, it retrieves a specific data file named countriesCIA.gpkg. The variable my_map stores a different GitHub URL that contains spatial data on specific countries that perform the best in regards to low obesity, tobacco, and alcohol levels. Then, myCIA reads and stores the "cia" layer from best_countries.gpkg, while worldBorders reads and stores the "border" layer from countriesCIA.gpkg.
+
 
 ```{r}
 library(ggplot2)
@@ -30,5 +32,5 @@ base + geom_sf(data=myCIA,fill='yellow') +
                  size=3,
                  nudge_y = 0.15)
 ```
-
+This script uses ggplot2 to create a spatial visualization. It starts by defining a base map (base) using ggplot() with the worldBorders dataset, displaying it as a grey-colored map with geom_sf(). myCIA is extracted and stored in maskToClip, which is used to define the zoomed-in plot area. Additionally, geom_sf_text() labels the countries in myCIA with blue text, ensuring labels do not overlap. Overall this creates a map that highlights specific countries from the myCIA dataset, including the countries that performed the best with low obesity, tobacco, and alcohol levels. 
 
