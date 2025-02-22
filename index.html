@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>myCIA<span class="ot">=</span><span class="fu">read_sf</span>(my_map, <span class="at">layer=</span><span class="st">'cia'</span>)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>worldBorders<span class="ot">=</span><span class="fu">read_sf</span>(mapLink, <span class="at">layer=</span><span class="st">'border'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The script loads the sf package and then stores the GitHub repository link in a variable called mainLink, which points to spatial data. Using mapLink, it retrieves a specific data file named countriesCIA.gpkg. The variable my_map stores a different GitHub URL that contains spatial data on specific countries that perform the best in regards to low obesity, tobacco, and alcohol levels. Then, myCIA reads and stores the “cia” layer from best_countries.gpkg, while worldBorders reads and stores the “border” layer from countriesCIA.gpkg.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -135,6 +136,7 @@ give correct results for longitude/latitude data</code></pre>
 </div>
 </div>
 </div>
+<p>This script uses ggplot2 to create a spatial visualization. It starts by defining a base map (base) using ggplot() with the worldBorders dataset, displaying it as a grey-colored map with geom_sf(). myCIA is extracted and stored in maskToClip, which is used to define the zoomed-in plot area. Additionally, geom_sf_text() labels the countries in myCIA with blue text, ensuring labels do not overlap. Overall this creates a map that highlights specific countries from the myCIA dataset, including the countries that performed the best with low obesity, tobacco, and alcohol levels.</p>
 
 </main>
 <!-- /main column -->
